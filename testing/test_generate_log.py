@@ -31,6 +31,16 @@ def test_log_file_content_matches_input(generated_file, log_data):
         lines = [line.strip() for line in file.readlines()]
     assert lines == log_data, "Log file contents do not match input data."
 
+
+def test_log_generation_prints_confirmation(capsys, log_data):
+    """Test that generate_log prints a confirmation message with the filename."""
+    filename = generate_log(log_data)
+    captured = capsys.readouterr()
+    assert f"Log written to {filename}" in captured.out
+    if os.path.exists(filename):
+        os.remove(filename)
+
+
 def test_generate_log_raises_error_on_invalid_input():
     """Test that the function raises a ValueError when input is not a list."""
     with pytest.raises(ValueError):

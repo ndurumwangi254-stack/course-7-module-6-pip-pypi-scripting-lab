@@ -18,6 +18,7 @@ def generate_log(data, filename=None):
         for entry in data:
             file.write(f"{entry}\n")
 
+    print(f"Log written to {filename}")
     return filename
 
 

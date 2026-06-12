@@ -2,8 +2,6 @@ from datetime import datetime
 import argparse
 import os
 
-import requests
-
 
 def generate_log(data, filename=None):
     """Write a list of log entries to a dated text file and return the filename."""
@@ -24,6 +22,8 @@ def generate_log(data, filename=None):
 
 def fetch_remote_entries(count=3):
     """Fetch a short list of remote entries from a public API."""
+    import requests
+
     url = "https://jsonplaceholder.typicode.com/posts"
     response = requests.get(url, params={"_limit": count}, timeout=10)
     response.raise_for_status()
